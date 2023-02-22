@@ -1,56 +1,70 @@
-#!/usr/bin/env python3
+# Getting Started with Create React App
 
-'''
-Keep us out of google search results..
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-$ od -d /dev/urandom | head
-0000000     60215   28778   29227   28548   62686   45171    7826   48766
-0000020     17118   15225   12852   34781   31955   19087   39563   43614
-0000040      6710   38515   14573   64087   17026   25598   42913   14209
-0000060     10723   31307   19071   14798    2462   46253   35626   32436
-0000100      1739   27712    5667   12212   47077   41722   54452   38461
-0000120      4816   15014   28623   10928   54028   64523   54632   54187
-0000140     61631   54499   18307    5514   50743   50591   25172   54018
-0000160     31990   26248    4383   46452   42156   62320   51052   28621
-0000200     27226   65296   56305   33375    4813   42283   19980    1922
-0000220     57061   29322   27073   64986   15219   26234   24100   21204
-'''
+## Available Scripts
 
-'''
-Copy this file and run `pbpaste | base64` to generate challenge text. Copious
-white space is at the bottom of the file to ensure trailing `==` and hint at
-base64.
-'''
+In the project directory, you can run:
 
-import codecs
-import string
-import sys
-import time
+### `npm start`
 
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.hashes import SHA1
-from cryptography.hazmat.primitives.twofactor.totp import TOTP
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-ONE_WEEK_IN_SECONDS = 604_800
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-def generate_secret():
-    totp = TOTP(
-        key=codecs.encode(string.ascii_letters, encoding="utf-8"),
-        length=8,
-        algorithm=SHA1(),
-        time_step=ONE_WEEK_IN_SECONDS,
-        backend=default_backend(),
-    )
-    seed = int(time.time())
-    token = codecs.decode(totp.generate(seed), encoding="utf-8")
-    return f"{token}-{seed}"
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-if __name__ == "__main__":
-    sys.stdout.write(
-        f"Please head to https://ramp.com/careers and use this secret when "
-        f"you apply: {generate_secret()}\n"
-    )
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
